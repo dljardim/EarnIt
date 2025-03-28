@@ -1,0 +1,46 @@
+
+create a household chore app for families.
+
+parents should be able to create update, delete chores for their children.
+Each chore should have a point value.
+They should be able to assign and remove those chores to their family members.
+kids should be able to log in and see the chores assigned to them.
+They should be able to update their chore with a done status.
+Parents can then verify the chore is complete.
+Once they verify, a counter for each famkly member should increase based on the point value of that chore completed.
+To incentive the completion of chores, there should be a prizes where points can purchase those items.
+
+
+create a restaurant sim
+- create a menu
+- send orders to kitchen
+- create cook timers
+- cook can mark as complete
+- cashier can then take money.
+- keep a tally of that money
+- print out a reciept for the custome
+
+User
+{
+    "id": 1,
+    "name": "Johnny",
+    "role": "child",
+    "points": 20
+}
+
+Chore
+{
+    "id": 101,
+    "title":"Take out the trash",
+    "points": 5,
+    "assignedTo": 1
+    "status": "pending"
+}
+
+Prize
+{
+    "id": 201
+    "name": "Toy Car",
+    "cost": 50
+}
+

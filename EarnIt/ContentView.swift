@@ -7,17 +7,24 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            
+            Counter()
+            
+//            Text("Welcome to Chore Tracker!")
+//                .font(.largeTitle)
+//            Button("Press Me") {
+//                print("Button tapped!")
+//            }
+//            .padding()
         }
-        .padding()
     }
 }
+
 
 #Preview {
     ContentView()

@@ -1,0 +1,22 @@
+{
+    "id": 1,
+    "name": "Johnny",
+    "role": "child",
+    "points": 20
+}
+
+{
+    "id": 101,
+    "title":"Take out the trash",
+    "points": 5,
+    "assignedTo": 1
+    "status": "pending"
+}
+
+
+{
+    "id": 201
+    "name": "Toy Car",
+    "cost": 50
+}
+
