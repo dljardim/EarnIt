@@ -1,109 +1,53 @@
-//
-//  DiceView.swift
-//  EarnIt
-//
-//  Created by Damian Jardim on 3/26/25.
-//
-
-
-/*
- 
- 1️⃣ Lets the user "roll" the dice multiple times using a loop.
- 2️⃣ Stops rolling when they get a 6 (like rolling a perfect score in a game!).
- 3️⃣ Prints how many times they had to roll before getting a 6.
- 💭 Bonus: Can you make it more fun by adding an interactive element? (e.g., pressing a button in SwiftUI to roll)
- 
- */
-
-
 import SwiftUI
 
 struct DiceView: View {
-    @State private var rollResult:Int = 0
-    @State private var shouldRoll:Bool = true
-    @State private var rollHistory:[Di] = []
     
-   
-    func roll(){
+    @State private var isRolling:Bool = false
+    @State private var numberOfRolls = 0
+    
+    func rollDice(){
+        numberOfRolls = 0
+        isRolling = true
         
-    }
-
-    var body: some View {
-        VStack{
+        // while loop will block the main thread - 
+        while isRolling {
+            numberOfRolls += 1
+            let diceRoll:Int = Int.random(in: 1...6)
+            print("You rolled a \(diceRoll)")
             
-            Spacer()
-//            List(rollHistory){ di in
-//                Text(di)
-//            }
-            
-            /* full width button */
-            Button{
-                
-            }label:{
-                Text("Roll Dice")
-                    .frame(maxWidth: .infinity, minHeight: 50)
-                    .fontWeight(.medium)
-                    .font(.headline)
+            if(diceRoll == 6){
+                print("Hurray!")
+                isRolling = false
             }
-            .buttonStyle(.borderedProminent)
-        }.padding()
-        
-    }
-}
-
-
-
-
-struct Di: View {
-    @State private var value:Int = Int.random(in: 1...6)
-
-    @State private var colorBackground:Color = Color(
-        red:Double.random(in: 0.0...1.0),
-        green:Double.random(in: 0.0...1.0),
-        blue:Double.random(in: 0.0...1.0),
-        opacity:Double.random(in: 0.0...1.0)
-    )
-    
-    @State private var colorForeground:Color = Color(
-        red:Double.random(in: 0.0...1.0),
-        green:Double.random(in: 0.0...1.0),
-        blue:Double.random(in: 0.0...1.0),
-        opacity:Double.random(in: 0.0...1.0)
-    )
-    
-    var body: some View {
-        
-        Button{
-            colorBackground = Color(
-                red:Double.random(in: 0.0...1.0),
-                green:Double.random(in: 0.0...1.0),
-                blue:Double.random(in: 0.0...1.0),
-                opacity:Double.random(in: 0.0...0.5))
-                
-            colorForeground = Color(
-                red:Double.random(in: 0.0...1.0),
-                green:Double.random(in: 0.0...1.0),
-                blue:Double.random(in: 0.0...1.0),
-                opacity:Double.random(in: 0.6...1.0))
-        }label:{
-            Text("\(value)")
-                .font(.custom("AmericanTypewriter", size: 64, relativeTo: .largeTitle))
-                .frame(width: 140.0, height: 140.0, alignment: .center)
-                .scaledToFit()
-                .background(colorBackground)
-                .foregroundStyle(colorForeground)
-                .font(.headline).fontWeight(.bold)
-                .clipShape(Circle())
-                .overlay {
-                    Circle().stroke(colorForeground, lineWidth: 4)
-                }
-                .shadow(color: .gray.opacity(0.5), radius: 3, x: 2, y: 2)
-
         }
     }
+    
+    var body: some View{
+        VStack{
+            Spacer()
+            
+            Text("Total Rolls: \(numberOfRolls)")
+                .font(.title)
+                .fontWeight(.medium)
+            
+            Spacer()
+            
+            Button{
+                rollDice()
+            }label:{
+                Text("Start Rolling")
+                    .frame(maxWidth: .infinity, minHeight: 50)
+                    .font(.title2)
+                    .fontWeight(.medium)
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(.blue)
+        }.padding()
+    }
 }
 
-#Preview {
-    DiceView().preferredColorScheme(.dark)
+struct DiceView_Previews: PreviewProvider {
+    static var previews: some View {
+        DiceView()
+    }
 }
-
